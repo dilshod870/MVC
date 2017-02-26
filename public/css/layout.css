@@ -1,0 +1,24 @@
+* {
+	padding: 0;
+	margin: 0;
+}
+
+.container {
+	min-height: 400px;
+	height: auto;
+	width: 900px;
+	
+	margin: 0 auto;
+	margin-top: 100px;
+	
+	box-sizing: border-box;
+	padding: 10px;
+	
+	border-radius: 10px;
+	
+	background: #ccc;
+}
+
+h1, h2, h3, h4, p {
+	padding: 10px;
+}
