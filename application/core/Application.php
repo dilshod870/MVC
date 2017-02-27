@@ -8,7 +8,7 @@ class Application {
 	
 	public function __construct() {
 		$this->segments = $this->getSegments();
-		$arguments = $this->getSegments();
+		$arguments 		= $this->getSegments();
 		array_shift($arguments);
 		array_shift($arguments);
 		
@@ -22,7 +22,11 @@ class Application {
 		$this->controller = new $controller($arguments);
 		
 		if (isset($this->segments[1])) {
-			$this->controller->{$this->segments[1]}();
+			if (method_exists($this->controller, $this->segments[1])) {
+				$this->controller->{$this->segments[1]}();
+			} else {
+				die('Method doesn\'t exist: ' . $this->segments[0] . 'Controller->' . $this->segments[1]);
+			}
 		} else {
 			$this->controller->index();
 		}
@@ -31,6 +35,8 @@ class Application {
 	private function getSegments() {
 		$path_info = isset($_SERVER['PATH_INFO']) ? $_SERVER['PATH_INFO'] : '';
 		$path_info = trim($path_info, '/');
+		$path_info = str_replace('-', '_', $path_info);
+		
 		return explode('/', $path_info);
 	}
 	
