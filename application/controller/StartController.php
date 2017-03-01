@@ -16,10 +16,8 @@ class StartController extends Controller {
 		echo "</pre>";
 		*/
 		
-		$test_model = new \Application\Model\TestModel();
-		
 		$this->set('page', 'index');
-		$this->set('content', $test_model->getString());
+		$this->set('content', 'This is the index page');
 		
 		$this->render('test.php');
 	}
